@@ -1,0 +1,7 @@
+parameters:
+    os_excel.class: OS\ExcelBundle\Excel\Excel
+
+services:
+    os.excel:
+        class: %os_excel.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
