@@ -1,0 +1,18 @@
+Integrate OSExcelBundle in your project
+----------------------------------------
+
+Add this lines in your deps file:
+  [PHPExcel]
+    git=git://github.com/ouardisoft/PHPExcel.git
+  [OSExcelBundle]
+    git=git://github.com/ouardisoft/OSExcelBundle.git
+    target=/bundles/OS/OSExcelBundle
+
+Execute this command line
+  php bin/vendors install
+
+Configuration
+----------------------------
+
+
+Enjoy!
