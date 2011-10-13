@@ -6,7 +6,7 @@ Add this lines in your deps file:
     git=git://github.com/ouardisoft/PHPExcel.git
   [OSExcelBundle]
     git=git://github.com/ouardisoft/OSExcelBundle.git
-    target=/bundles/OS/OSExcelBundle
+    target=/bundles/OS/ExcelBundle
 
 Execute this command line
   php bin/vendors install
