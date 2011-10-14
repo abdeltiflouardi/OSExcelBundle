@@ -14,6 +14,12 @@ class Excel {
     private $phpExcel;
     private $currentSheet;
 
+    /**
+     * Parse and load and spreadsheet file
+     * 
+     * @param string $file
+     * @param array $options 
+     */
     public function loadFile($file = null, $options = array()) {
         $this->options += $options;
 
@@ -29,38 +35,99 @@ class Excel {
         $this->setActiveSheet();
     }
 
+    /**
+     * Number of sheets
+     * 
+     * @return int
+     */
     public function getSheetCount() {
         return $this->phpExcel->getSheetCount();
     }
 
+    /**
+     * Sheet names
+     * 
+     * @return array
+     */
     public function getSheetNames() {
         return $this->phpExcel->getSheetNames();
     }
 
-    public function setActiveSheet($indice = 0) {
-        $this->currentSheet = $this->phpExcel->setActiveSheetIndex($indice);
+    /**
+     * Active a sheet by indix
+     *
+     * @param int $index
+     */
+    public function setActiveSheet($index = 0) {
+        $this->currentSheet = $this->phpExcel->setActiveSheetIndex($index);
     }
 
+    /**
+     * Return activated sheet
+     * 
+     * @return \PHPExcel_Worksheet
+     */
     public function getSheet() {
         return $this->currentSheet;
     }
 
+    /**
+     * Number of lines
+     * 
+     * @return int
+     */
     public function getRowCount() {
         return $this->getSheet()->getHighestRow();
     }
 
+    /**
+     * Char of highest column (A, B, C, ...)
+     * 
+     * @return string
+     */
     public function getHighestColumn() {
         return $this->getSheet()->getHighestColumn();
     }
 
+    /**
+     * Number of columns
+     * 
+     * @return int
+     */
     public function getColumnCount() {
         return PHPExcel_Cell::columnIndexFromString($this->getHighestColumn());
     }
 
+    /**
+     * Value of defined cellule
+     *
+     * @param int $row
+     * @param int $col
+     * @return mixed 
+     */
     public function getCellData($row = 0, $col = 0) {
         return $this->getSheet()->getCellByColumnAndRow($col, $row)->getValue();
     }
 
+    /**
+     * Return row data
+     * 
+     * @param int $index
+     * @return array $row_data 
+     */
+    public function getRowData($index = 0) {
+        $row_data = array();
+        for ($col = 0, $row = $index; $col < $this->getColumnCount(); $col++)
+            $row_data[] = $this->getCellData($row, $col);
+
+        return $row_data;
+    }
+
+    /**
+     * Return current sheet data
+     * 
+     * @return array $data
+     */
     public function getSheetData() {
         $data = array();
         for ($row = 1; $row <= $this->getRowCount(); ++$row) {
