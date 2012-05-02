@@ -2,8 +2,6 @@
 
 namespace OS\ExcelBundle\Excel;
 
-require preg_replace ('/(.{1})bundles(.{1})OS(.{1})ExcelBundle(.{1})Excel/', '', __DIR__) . '/PHPExcel/PHPExcel.php';
-
 use PHPExcel_IOFactory,
     PHPExcel_Cell;
 
