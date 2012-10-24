@@ -7,10 +7,10 @@ use PHPExcel_IOFactory,
 
 class Excel {
 
-    private $options = array('readOnly' => true);
-    private $reader;
-    private $phpExcel;
-    private $currentSheet;
+    protected $options = array('readOnly' => true);
+    protected $reader;
+    protected $phpExcel;
+    protected $currentSheet;
 
     /**
      * Parse and load and spreadsheet file
