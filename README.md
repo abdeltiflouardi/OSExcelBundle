@@ -13,5 +13,47 @@ Execute this command line
 
      php composer.phar install
 
+USING:
+------
+
+Call service:
+
+     $excel = $this->get('os.excel');
+
+Select sheet
+
+     $excel->setActiveSheet([INDEX_OF_SHEET]);
+
+Get count of sheet
+
+     $excel->getSheetCount();
+
+Get sheet names
+
+     $excel->getSheetNames();
+
+Get count of rows of selected sheet
+
+     $excel->getRowCount();
+
+Get Count of columns of selected sheet
+
+     $excel->getRowCount();
+
+Get index of last column
+
+     $excel->getHighestColumn();
+
+Get row data
+
+     $excel->getRowData([INDEX_OF_ROW]);
+
+Get cell data
+
+     $excel->getCellData([INDEX_OF_ROW], [INDEX_OF_COLUMN]);
+
+GET sheet data as php array
+
+     $excel->getSheetData();
 
 Enjoy!
