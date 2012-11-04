@@ -1,3 +1,0 @@
-OSExcelBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: OSExcelBundle:Default:index }
