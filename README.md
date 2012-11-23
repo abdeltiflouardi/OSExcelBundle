@@ -5,20 +5,32 @@ Add this line to the require option in your composer.json file:
 
      "os/excel-bundle": "dev-master"
 
-Add autoloader for PHPExcel in app/autoloader.php
+Execute this command line
+
+     php composer.phar update os/excel-bundle
+
+Add autoloader for PHPExcel in app/autoloader.php before `return $loader;`
+
+     ....
 
      require __DIR__.'/../vendor/os/php-excel/PHPExcel/PHPExcel.php';
 
-Execute this command line
+     return $loader
 
-     php composer.phar install
+In your app/AppKernel.php
+
+     new OS\ExcelBundle\OSExcelBundle
 
 USING:
 ------
 
-Call service:
+Call service
 
      $excel = $this->get('os.excel');
+
+Open file
+
+     $excel->loadFile([FILE_PATHNAME]);
 
 Select sheet
 
