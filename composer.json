@@ -19,5 +19,6 @@
   "autoload": {
       "psr-0": { "OS\\ExcelBundle": "" }
   },
+  "minimum-stability": "dev",
   "target-dir": "OS/ExcelBundle"
 }
