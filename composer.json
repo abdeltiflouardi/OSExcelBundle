@@ -14,7 +14,7 @@
   ],
   "require": {
     "php": ">=5.2.6",
-    "os/php-excel": "dev-master"
+    "os/php-excel": "*"
   },
   "autoload": {
       "psr-0": { "OS\\ExcelBundle": "" }
