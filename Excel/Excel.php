@@ -2,10 +2,11 @@
 
 namespace OS\ExcelBundle\Excel;
 
-use PHPExcel_IOFactory,
-    PHPExcel_Cell;
+use PHPExcel_IOFactory;
+use PHPExcel_Cell;
 
-class Excel {
+class Excel
+{
 
     protected $options = array('readOnly' => true);
     protected $reader;
@@ -18,16 +19,20 @@ class Excel {
      * @param string $file
      * @param array $options 
      */
-    public function loadFile($file = null, $options = array()) {
+    public function loadFile($file = null, $options = array())
+    {
         $this->options += $options;
 
-        if (!$file)
+        if (!$file) {
             throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException('Missing arguments!');
+        }
 
         extract($this->options);
 
-        $this->reader = PHPExcel_IOFactory::createReader(PHPExcel_IOFactory::identify($file));
-        $this->reader->setReadDataOnly($readOnly);
+        $this->reader   = PHPExcel_IOFactory::createReader(PHPExcel_IOFactory::identify($file));
+        if (method_exists($this->reader, 'setReadDataOnly')) {
+            $this->reader->setReadDataOnly($readOnly);
+        }
         $this->phpExcel = $this->reader->load($file);
 
         $this->setActiveSheet();
@@ -38,7 +43,8 @@ class Excel {
      * 
      * @return int
      */
-    public function getSheetCount() {
+    public function getSheetCount()
+    {
         return $this->phpExcel->getSheetCount();
     }
 
@@ -47,7 +53,8 @@ class Excel {
      * 
      * @return array
      */
-    public function getSheetNames() {
+    public function getSheetNames()
+    {
         return $this->phpExcel->getSheetNames();
     }
 
@@ -56,7 +63,8 @@ class Excel {
      *
      * @param int $index
      */
-    public function setActiveSheet($index = 0) {
+    public function setActiveSheet($index = 0)
+    {
         $this->currentSheet = $this->phpExcel->setActiveSheetIndex($index);
     }
 
@@ -65,7 +73,8 @@ class Excel {
      * 
      * @return \PHPExcel_Worksheet
      */
-    public function getSheet() {
+    public function getSheet()
+    {
         return $this->currentSheet;
     }
 
@@ -74,7 +83,8 @@ class Excel {
      * 
      * @return int
      */
-    public function getRowCount() {
+    public function getRowCount()
+    {
         return $this->getSheet()->getHighestRow();
     }
 
@@ -83,7 +93,8 @@ class Excel {
      * 
      * @return string
      */
-    public function getHighestColumn() {
+    public function getHighestColumn()
+    {
         return $this->getSheet()->getHighestColumn();
     }
 
@@ -92,7 +103,8 @@ class Excel {
      * 
      * @return int
      */
-    public function getColumnCount() {
+    public function getColumnCount()
+    {
         return PHPExcel_Cell::columnIndexFromString($this->getHighestColumn());
     }
 
@@ -103,7 +115,8 @@ class Excel {
      * @param int $col
      * @return mixed 
      */
-    public function getCellData($row = 0, $col = 0) {
+    public function getCellData($row = 0, $col = 0)
+    {
         return $this->getSheet()->getCellByColumnAndRow($col, $row)->getValue();
     }
 
@@ -113,10 +126,12 @@ class Excel {
      * @param int $index
      * @return array $row_data 
      */
-    public function getRowData($index = 0) {
-        $row_data = array();
-        for ($col = 0, $row = $index; $col < $this->getColumnCount(); $col++)
-            $row_data[] = $this->getCellData($row, $col);
+    public function getRowData($index = 0)
+    {
+        $row_data   = array();
+        for ($col = 0, $row = $index; $col < $this->getColumnCount(); $col++) {
+                $row_data[] = $this->getCellData($row, $col);
+        }
 
         return $row_data;
     }
@@ -126,7 +141,8 @@ class Excel {
      * 
      * @return array $data
      */
-    public function getSheetData() {
+    public function getSheetData()
+    {
         $data = array();
         for ($row = 1; $row <= $this->getRowCount(); ++$row) {
             for ($col = 0; $col <= $this->getColumnCount(); ++$col) {
@@ -140,7 +156,4 @@ class Excel {
 
         return $data;
     }
-
 }
-
-?>
