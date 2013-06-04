@@ -39,6 +39,16 @@ class Excel
     }
 
     /**
+     * Return reader object
+     * 
+     * @return PHPExcel_IOFactory
+     */
+    public function getReader()
+    {
+        return $this->reader;
+    }
+
+    /**
      * Number of sheets
      * 
      * @return int
