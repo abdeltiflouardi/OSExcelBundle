@@ -30,9 +30,15 @@ class Excel
         extract($this->options);
 
         $this->reader   = PHPExcel_IOFactory::createReader(PHPExcel_IOFactory::identify($file));
+
+        if (isset($this->options['delimiter']) && method_exists($this->reader, 'setDelimiter')) {
+            $this->reader->setDelimiter($this->options['delimiter']);
+        }
+
         if (method_exists($this->reader, 'setReadDataOnly')) {
             $this->reader->setReadDataOnly($readOnly);
         }
+
         $this->phpExcel = $this->reader->load($file);
 
         $this->setActiveSheet();
