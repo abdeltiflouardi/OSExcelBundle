@@ -50,7 +50,7 @@ Get count of rows of selected sheet
 
 Get Count of columns of selected sheet
 
-     $excel->getRowCount();
+     $excel->getColumnCount();
 
 Get index of last column
 
