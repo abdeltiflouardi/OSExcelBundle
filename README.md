@@ -9,14 +9,6 @@ Execute this command line
 
      php composer.phar update os/excel-bundle
 
-Add autoloader for PHPExcel in app/autoloader.php before `return $loader;`
-
-     ....
-
-     require __DIR__.'/../vendor/os/php-excel/PHPExcel/PHPExcel.php';
-
-     return $loader
-
 In your app/AppKernel.php
 
      new OS\ExcelBundle\OSExcelBundle
