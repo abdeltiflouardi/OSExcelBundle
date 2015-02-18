@@ -2,7 +2,7 @@
   "name": "os/excel-bundle",
   "description": "OS Excel Bundle for Symfony2",
   "keywords": ["excel"],
-  "homepage": "http://github.com/ouardisoft/OSExcelBundle",
+  "homepage": "http://github.com/abdeltiflouardi/OSExcelBundle",
   "type": "symfony-bundle",
   "license": "MIT",
   "authors": [
