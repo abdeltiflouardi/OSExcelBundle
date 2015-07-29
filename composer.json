@@ -17,8 +17,7 @@
     "os/php-excel": "2.1"
   },
   "autoload": {
-      "psr-0": { "OS\\ExcelBundle": "" },
-      "files": ["vendor/os/php-excel/PHPExcel/PHPExcel.php"]
+      "psr-0": { "OS\\ExcelBundle": "" }
   },
   "minimum-stability": "dev",
   "target-dir": "OS/ExcelBundle"
