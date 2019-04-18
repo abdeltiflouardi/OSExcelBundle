@@ -3,5 +3,5 @@ parameters:
 
 services:
     os.excel:
-        class: %os_excel.class%
+        class: '%os_excel.class%'
 #        arguments: [@service_id, "plain_value", %parameter%]
